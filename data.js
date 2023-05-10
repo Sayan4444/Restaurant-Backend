@@ -1,7 +1,7 @@
 const Cuisine = require('./model/Cuisine.js');
-const Item = require('./model/Item.js');
 const Location = require('./model/Location.js');
 const Restaurant = require('./model/Restaurant.js');
+const User = require('./model/User.js');
 
 const locationData = [
     { name: "ottawa" },
@@ -1038,4 +1038,332 @@ const itemDataHandler = async () => {
     ];
 };
 
-module.exports = { locationData, cuisineData, restaurantDataHandler, itemDataHandler }
+const userData = [
+    {
+        first_name: "Laith",
+        last_name: "Harb",
+        email: "laith@hotmail.com",
+        city: "ottawa",
+        password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+        phone: "1112223333",
+    },
+    {
+        first_name: "Josh",
+        last_name: "Allen",
+        email: "josh@hotmail.com",
+        city: "toronto",
+        password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+        phone: "1112223333",
+    },
+    {
+        first_name: "LeBron",
+        last_name: "James",
+        email: "lebron@hotmail.com",
+        city: "niagra",
+        password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+        phone: "1112223333",
+    },
+    {
+        first_name: "Cassidy",
+        last_name: "Marksom",
+        email: "cassidy@hotmail.com",
+        city: "toronto",
+        password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+        phone: "1112223333",
+    },
+];
+
+const reviewDataHandler = async () => {
+    const restaurants = await Restaurant.find();
+
+
+    const vivaanId = restaurants.find(
+        (restaurant) => restaurant.name === "Vivaan - fine Indian"
+    )?.id;
+    const RamaKrishnaId = restaurants.find(
+        (restaurant) => restaurant.name === "RamaKrishna Indian"
+    )?.id;
+    const coconutLagoonId = restaurants.find(
+        (restaurant) => restaurant.name === "Coconut Lagoon"
+    )?.id;
+    const lastTrainToDelhiId = restaurants.find(
+        (restaurant) => restaurant.name === "Last Train to Delhi"
+    )?.id;
+    const adrakYorkvilleId = restaurants.find(
+        (restaurant) => restaurant.name === "Adrak Yorkville"
+    )?.id;
+    const curryishTavernId = restaurants.find(
+        (restaurant) => restaurant.name === "Curryish Tavern"
+    )?.id;
+    const utsavId = restaurants.find(
+        (restaurant) => restaurant.name === "Utsav"
+    )?.id;
+    const pukkaId = restaurants.find(
+        (restaurant) => restaurant.name === "Pukka"
+    )?.id;
+    const kamasutraIndianId = restaurants.find(
+        (restaurant) => restaurant.name === "Kamasutra Indian"
+    )?.id;
+    const eldoradoTacoId = restaurants.find(
+        (restaurant) => restaurant.name === "Eldorado Taco"
+    )?.id;
+    const laBartolaId = restaurants.find(
+        (restaurant) => restaurant.name === "La Bartola"
+    )?.id;
+    const elCatrinId = restaurants.find(
+        (restaurant) => restaurant.name === "El Catrin"
+    )?.id;
+    const mariachisId = restaurants.find(
+        (restaurant) => restaurant.name === "3 Mariachis"
+    )?.id;
+    const canoRestaurantId = restaurants.find(
+        (restaurant) => restaurant.name === "Cano Restaurant"
+    )?.id;
+    const bluRistoranteId = restaurants.find(
+        (restaurant) => restaurant.name === "Blu Ristorante"
+    )?.id;
+    const stelvioId = restaurants.find(
+        (restaurant) => restaurant.name === "Stelvio"
+    )?.id;
+    const sofiaId = restaurants.find(
+        (restaurant) => restaurant.name === "Sofia"
+    )?.id;
+
+
+
+    const userLaith = await User.findOne({
+        email: 'laith@hotmail.com',
+    }).select('id');
+    const userJosh = await User.findOne({
+        email: 'josh@hotmail.com',
+    }).select('id');
+    const userLebron = await User.findOne({
+        email: 'lebron@hotmail.com',
+    }).select('id');
+    const userCassidy = await User.findOne({
+        email: 'cassidy@hotmail.com',
+    }).select('id');
+
+
+    return [
+        {
+            first_name: "Laith",
+            last_name: "Harb",
+            text: "This place is amazing, it has some of the best dishes in the world. It is so so so good!!!",
+            rating: 5,
+            restaurant_id: vivaanId,
+            user_id: userLaith.id,
+        },
+        {
+            first_name: "Laith",
+            last_name: "Harb",
+            text: "This food is so good! It is the fanciest thing I have ever seen in my short life",
+            rating: 5,
+            restaurant_id: bluRistoranteId,
+            user_id: userLaith.id,
+        },
+        {
+            first_name: "Laith",
+            last_name: "Harb",
+            text: "Excellent food and service. Busy night, but everything was great! Highly recommend.",
+            rating: 5,
+            restaurant_id: elCatrinId,
+            user_id: userLaith.id,
+        },
+        {
+            first_name: "Laith",
+            last_name: "Harb",
+            text: "Very nice place for a date night, the service was fast and friendly. The food was amazing.",
+            rating: 4,
+            restaurant_id: stelvioId,
+            user_id: userLaith.id,
+        },
+        {
+            first_name: "Laith",
+            last_name: "Harb",
+            text: "Extremely disappointing in our experience.",
+            rating: 2,
+            restaurant_id: laBartolaId,
+            user_id: userLaith.id,
+        },
+        {
+            first_name: "Laith",
+            last_name: "Harb",
+            text: "This place is amazing, it has some of the best dishes in the world. It is so so so good!!!",
+            rating: 5,
+            restaurant_id: elCatrinId,
+            user_id: userLaith.id,
+        },
+        {
+            first_name: "Laith",
+            last_name: "Harb",
+            text: "As always, food was excellent. Waitress was friendly and prompt. We had just one problem in that our dessert order went rogue in the system and we waited ages for it to arrive.",
+            rating: 5,
+            restaurant_id: kamasutraIndianId,
+            user_id: userLaith.id,
+        },
+        {
+            first_name: "Laith",
+            last_name: "Harb",
+            text: "Restaurant was loud and crowded. Food is not worth the price.",
+            rating: 3,
+            restaurant_id: eldoradoTacoId,
+            user_id: userLaith.id,
+        },
+        {
+            first_name: "Josh",
+            last_name: "Allen",
+            text: "A Christmas lunch with clients served by a friendly server with a good wine selection everyone enjoyed the appetizers and meals",
+            rating: 4,
+            restaurant_id: vivaanId,
+            user_id: userJosh.id,
+        },
+        {
+            first_name: "Josh",
+            last_name: "Allen",
+            text: "The food was very tasty, the price is a little high so a place to go only for special occasions",
+            rating: 5,
+            restaurant_id: sofiaId,
+            user_id: userJosh.id,
+        },
+        {
+            first_name: "Josh",
+            last_name: "Allen",
+            text: "Had a great time at Chops. Our server Dane was super friendly. Dinner was delicious as always.",
+            rating: 3,
+            restaurant_id: curryishTavernId,
+            user_id: userJosh.id,
+        },
+        {
+            first_name: "Josh",
+            last_name: "Allen",
+            text: "The service was poor as we had to wait a long time for our food. There were some issues but were dealt with in a proper manner.",
+            rating: 3,
+            restaurant_id: adrakYorkvilleId,
+            user_id: userJosh.id,
+        },
+        {
+            first_name: "Josh",
+            last_name: "Allen",
+            text: "Wonderful food and service.",
+            rating: 5,
+            restaurant_id: coconutLagoonId,
+            user_id: userJosh.id,
+        },
+        {
+            first_name: "Josh",
+            last_name: "Allen",
+            text: "Great food, great staff. You can’t ask for much more from a restaurant.",
+            rating: 5,
+            restaurant_id: bluRistoranteId,
+            user_id: userJosh.id,
+        },
+        {
+            first_name: "LeBron",
+            last_name: "James",
+            text: "Wonderful service! Delicious food! Comfortable seating and luxurious atmosphere.",
+            rating: 5,
+            restaurant_id: RamaKrishnaId,
+            user_id: userLebron.id,
+        },
+        {
+            first_name: "LeBron",
+            last_name: "James",
+            text: "Prime rib and filet were made spot on. Vegetable sides were made well as was the shrimp and scallops.",
+            rating: 4,
+            restaurant_id: lastTrainToDelhiId,
+            user_id: userLebron.id,
+        },
+        {
+            first_name: "LeBron",
+            last_name: "James",
+            text: "This visit was with a friend who had never been here before. She loved it as much as I do. She said it will be our new go to place!",
+            rating: 4,
+            restaurant_id: curryishTavernId,
+            user_id: userLebron.id,
+        },
+        {
+            first_name: "LeBron",
+            last_name: "James",
+            text: "Had a full 3 course meal in the mid afternoon and every aspect of it was great. Server was named Brittany I believe and she was simply excellent.",
+            rating: 5,
+            restaurant_id: pukkaId,
+            user_id: userLebron.id,
+        },
+        {
+            first_name: "LeBron",
+            last_name: "James",
+            text: "Very nice evening spent with special family.",
+            rating: 5,
+            restaurant_id: mariachisId,
+            user_id: userLebron.id,
+        },
+        {
+            first_name: "LeBron",
+            last_name: "James",
+            text: "First time, and not the last. Very welcoming. The food was deliscious and service very good. Highly recommend.",
+            rating: 4,
+            restaurant_id: eldoradoTacoId,
+            user_id: userLebron.id,
+        },
+        {
+            first_name: "Cassidy",
+            last_name: "Mancher",
+            text: "Enjoyed our drinks, dinner and dessert. Great service and ambience.",
+            rating: 5,
+            restaurant_id: mariachisId,
+            user_id: userCassidy.id,
+        },
+        {
+            first_name: "Cassidy",
+            last_name: "Mancher",
+            text: "The food was absolutely on point, we had such a great experience and our server was top notch. ",
+            rating: 4,
+            restaurant_id: stelvioId,
+            user_id: userCassidy.id,
+        },
+        {
+            first_name: "Cassidy",
+            last_name: "Mancher",
+            text: "The steaks were 'Melt In Your Mouth'!!! Nigel, our waiter was amazing!! Great experience overall!",
+            rating: 5,
+            restaurant_id: coconutLagoonId,
+            user_id: userCassidy.id,
+        },
+        {
+            first_name: "Cassidy",
+            last_name: "Mancher",
+            text: "It was really great! Just temperature wise it was really chilly. A little mixup at the end with desserts also but overall we really enjoyed the evening",
+            rating: 4,
+            restaurant_id: bluRistoranteId,
+            user_id: userCassidy.id,
+        },
+        {
+            first_name: "Cassidy",
+            last_name: "Mancher",
+            text: "Food was served cold. Major No No. Fantastic Dessert. Service was good. Heavy Rock music should be toned down. Price vs Quality… not great.",
+            rating: 3,
+            restaurant_id: laBartolaId,
+            user_id: userCassidy.id,
+        },
+        {
+            first_name: "Cassidy",
+            last_name: "Mancher",
+            text: "Fantastic food and excellent selection. Everything was fresh - and the scones were still warm!",
+            rating: 4,
+            restaurant_id: eldoradoTacoId,
+            user_id: userCassidy.id,
+        },
+        {
+            first_name: "Cassidy",
+            last_name: "Mancher",
+            text: "Fantastic food and excellent selection. Everything was fresh - and the scones were still warm!",
+            rating: 4,
+            restaurant_id: utsavId,
+            user_id: userCassidy.id,
+        },
+    ]
+}
+
+
+module.exports = { locationData, cuisineData, restaurantDataHandler, itemDataHandler, userData, reviewDataHandler }

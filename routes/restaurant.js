@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { restaurantData, restaurantDataBySlug, restaurantDataByLocation } = require('../controllers/restaurant');
+const { getRestaurantData } = require('../controllers/restaurant');
 
-router.get('/', restaurantData);
-router.get('/search', restaurantDataByLocation);
-router.get('/:slug', restaurantDataBySlug);
+router.get('/', getRestaurantData);
 
 module.exports = router;

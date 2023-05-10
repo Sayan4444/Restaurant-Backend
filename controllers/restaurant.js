@@ -1,54 +1,29 @@
 const Restaurant = require("../model/Restaurant");
 
-exports.restaurantData = async (req, res) => {
+exports.getRestaurantData = async (req, res) => {
     try {
-        const data =
-            await Restaurant
-                .find()
-                .select(req.query.select)
-                .populate('location_id')
-                .populate('cuisine_id')
+        let query = Restaurant.find({ ...req.query.filter });
+        if (req.query.select) query = query.select(req.query.select);
+        if (req.query.location_id) query = query.populate('location_id');
+        if (req.query.cuisine_id) query = query.populate('cuisine_id');
+        if (req.query.item_id) query = query.populate('item_id');
+        if (req.query.review_id) query = query.populate('review_id');
 
-        res.status(200).json({
+        let data = await query;
+
+        if (req.query.location)
+            data = data.filter(obj => obj.location_id.name === req.query.location)
+        if (req.query.cuisine)
+            data = data.filter(obj => obj.cuisine_id.name === req.query.cuisine)
+
+        return res.json({
             success: true,
             data
         })
     } catch (error) {
-        res.status(400).json({
+        return res.json({
             success: false,
             error: error.message
         })
     }
-}
-
-exports.restaurantDataBySlug = async (req, res) => {
-    let query;
-    query = Restaurant.findOne({
-        slug: req.params.slug
-    })
-        .select('_id')
-
-    if (req.query.select) query = query.select(req.query.select);
-    if (req.query.item) query = query.populate('item_id');
-    const data = await query;
-    return res.status(200).json({
-        success: true,
-        data
-    })
-}
-
-exports.restaurantDataByLocation = async (req, res) => {
-    let data = await Restaurant
-        .find()
-        .select(req.query.select)
-        .populate('location_id')
-        .populate('cuisine_id')
-
-    if (req.query.city)
-        data = data.filter(item => item.location_id.name === req.query.city);
-
-    return res.status(200).json({
-        success: true,
-        data
-    })
 }

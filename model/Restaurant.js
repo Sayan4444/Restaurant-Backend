@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Cuisine = require("../model/Cuisine.js")
 const Location = require("../model/Location.js")
 const Item = require("../model/Item.js")
+const Review = require("../model/Review.js")
 
 const RestaurantSchema = new mongoose.Schema({
   name: {
@@ -53,6 +54,13 @@ const RestaurantSchema = new mongoose.Schema({
 
 RestaurantSchema.virtual('item_id', {
   ref: 'Item',
+  localField: '_id',
+  foreignField: 'restaurant_id',
+  justOne: false
+})
+
+RestaurantSchema.virtual('review_id', {
+  ref: 'Review',
   localField: '_id',
   foreignField: 'restaurant_id',
   justOne: false
