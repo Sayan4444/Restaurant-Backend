@@ -4,7 +4,8 @@
   "description": "Backend for the hospital website",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "Sayan Banerjee",
