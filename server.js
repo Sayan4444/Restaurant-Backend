@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'https://restaurant-frontend-eta.vercel.app']
+    origin: ['http://localhost:3000', 'https://restaurant-frontend-eta.vercel.app', 'https://restaurant-frontend-git-main-sayanbanerjee2002-gmailcom.vercel.app', 'https://restaurant-frontend-lzfbn930w-sayanbanerjee2002-gmailcom.vercel.app/']
 }))
 dotenv.config({ path: './config/config.env' });
 
