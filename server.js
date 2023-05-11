@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000']
+    origin: ['http://localhost:3000', 'https://restaurant-frontend-eta.vercel.app']
 }))
 dotenv.config({ path: './config/config.env' });
 
