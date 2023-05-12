@@ -4,18 +4,20 @@ const colors = require('colors')
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 
+dotenv.config({ path: './config/config.env' });
+
 const cors = require('cors');
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({
+const corsOptions = {
     credentials: true,
-    origin: ['http://localhost:3000', 'https://restaurant-frontend-beta.vercel.app']
-}));
-//     origin: ['http://localhost:3000', 'https://restaurant-frontend-eta.vercel.app', 'https://restaurant-frontend-git-main-sayanbanerjee2002-gmailcom.vercel.app', 'https://restaurant-frontend-lzfbn930w-sayanbanerjee2002-gmailcom.vercel.app/']
-// }))
-dotenv.config({ path: './config/config.env' });
+    origin: process.env.ENV === 'dev' ? 'http://localhost:3000' : 'https://restaurant-frontend-beta.vercel.app'
+}
+app.use(cors(corsOptions));
+
+
 
 const connectDB = require('./config/db');
 connectDB();
