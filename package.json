@@ -1,7 +1,7 @@
 {
-  "name": "hospital_backend",
+  "name": "restaurant_backend",
   "version": "1.0.0",
-  "description": "Backend for the hospital website",
+  "description": "Backend for the restaurant website",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
